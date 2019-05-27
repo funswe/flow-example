@@ -11,12 +11,13 @@ import (
 )
 
 var (
-	h        bool
-	appName  string
-	proxy    bool
-	address  string
-	viewPath string
-	logPath  string
+	h           bool
+	appName     string
+	proxy       bool
+	address     string
+	viewPath    string
+	logPath     string
+	loggerLevel string
 )
 
 func init() {
@@ -27,6 +28,7 @@ func init() {
 	flag.StringVar(&address, "address", "localhost:9505", "set listen address")
 	flag.StringVar(&viewPath, "view-path", filepath.Join(path, "views"), "set view path")
 	flag.StringVar(&logPath, "log-path", filepath.Join(path, "logs"), "set log path")
+	flag.StringVar(&loggerLevel, "logger-level", "debug", "set logger level")
 }
 
 func main() {
@@ -45,6 +47,8 @@ func main() {
 	flow.SetViewPath(viewPath)
 	// 设置日志路径
 	flow.SetLogPath(logPath)
+	// 设置日志级别
+	flow.SetLoggerLevel(loggerLevel)
 	// 添加一个中间件
 	flow.Use(func(ctx *flow.Context, next flow.Next) {
 		fmt.Println("start...")
