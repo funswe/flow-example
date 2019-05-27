@@ -16,6 +16,8 @@ Usage of flow-example:
   -h	this help
   -log-path string
     	set log path (default "当前路径下的logs目录")
+  -logger-level string
+      	set logger level (default "debug")
   -proxy
     	set proxy mode
   -view-path string
@@ -24,7 +26,7 @@ Usage of flow-example:
 
 执行命令
 ```
-flow-example --app-name <appName> --address <address> --view-path $GOPATH/src/github.com/funswe/flow-example --log-path <logPath>
+flow-example --app-name <appName> --address <address> --view-path $GOPATH/src/github.com/funswe/flow-example --log-path <logPath> --logger-level <level>
 ```
 
 # 查看效果
