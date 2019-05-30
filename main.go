@@ -18,10 +18,10 @@ var (
 	viewPath    string
 	logPath     string
 	loggerLevel string
+	path, _     = filepath.Abs(".")
 )
 
 func init() {
-	path, _ := filepath.Abs(".")
 	flag.BoolVar(&h, "h", false, "this help")
 	flag.StringVar(&appName, "app-name", "flow-example", "set app name")
 	flag.BoolVar(&proxy, "proxy", false, "set proxy mode")
@@ -49,6 +49,8 @@ func main() {
 	flow.SetLogPath(logPath)
 	// 设置日志级别
 	flow.SetLoggerLevel(loggerLevel)
+	// 设置静态资源路径
+	flow.StaticFiles("file", filepath.Join(path, "resource"))
 	// 添加一个中间件
 	flow.Use(func(ctx *flow.Context, next flow.Next) {
 		fmt.Println("start...")

@@ -1,12 +1,14 @@
 package controllers
 
-import "github.com/funswe/flow"
+import (
+	"github.com/funswe/flow"
+)
 
 func init() {
 	flow.ALL("/json", json())
 	flow.GET("/render", render())
 	flow.GET("/parse/:name", parse())
-
+	flow.GET("/download", download())
 }
 
 // json方式返回
@@ -45,5 +47,11 @@ func parse() flow.Handler {
 			"age1":  ctx.GetParam("age"),
 			"name2": ctx.GetParamDefault("name2", "test"),
 		})
+	}
+}
+
+func download() flow.Handler {
+	return func(ctx *flow.Context) {
+		ctx.Download("flink-1.8.0-src.tgz")
 	}
 }
